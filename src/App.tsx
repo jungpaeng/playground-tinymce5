@@ -1,27 +1,34 @@
+// @ts-nocheck
 import React from 'react';
+import { Editor } from '@tinymce/tinymce-react';
 
-function App() {
+const App = () => {
+  const [state, setState] = React.useState('<p>This is the initial content of the editor</p>');
+
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit
-          {' '}
-          <code>src/App.tsx</code>
-          {' '}
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <section>
+        <Editor
+          value={state}
+          init={{
+            height: 500,
+            menubar: false,
+            plugins: ['image'],
+            toolbar: 'undo redo | formatselect | image help',
+            images_upload_handler: (blobInfo, success) => {
+              const reader = new FileReader();
+              reader.readAsDataURL(blobInfo.blob());
+              reader.onload = (e) => {
+                success(e.target.result);
+              };
+            },
+          }}
+          onEditorChange={setState}
+        />
+      </section>
+      <section>{state}</section>
     </div>
   );
-}
+};
 
 export default App;
