@@ -13,7 +13,7 @@ const App = () => {
           init={{
             height: 500,
             menubar: false,
-            plugins: ['image', 'media'],
+            plugins: ['image', 'imagetools', 'media'],
             toolbar: 'undo redo | formatselect | image media help',
             images_upload_handler: (blobInfo, success) => {
               const reader = new FileReader();
