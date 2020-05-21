@@ -7,5 +7,18 @@
     "airbnb",
     "airbnb/hooks",
     "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+    "no-undef": "off",
+    "import/extensions": "off",
+    "import/no-unresolved": "off"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.tsx"],
+      "rules": {
+        "react/jsx-filename-extension": "off"
+      }
+    }
   ]
 }
